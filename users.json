@@ -1,0 +1,16 @@
+{
+    "Admin": {
+        "display_name": "Admin",
+        "password": "050714",
+        "email": "polar.ras@mail.ru",
+        "email_verified": true,
+        "admin": true
+    },
+    "1": {
+        "display_name": "1",
+        "password": "1",
+        "email": null,
+        "email_verified": false,
+        "admin": false
+    }
+}

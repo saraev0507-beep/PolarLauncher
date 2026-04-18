@@ -1,0 +1,5 @@
+{
+    "mc_path": ".minecraft",
+    "version": "Forge 1.19.4",
+    "java_args": "-Xmx2G"
+}
