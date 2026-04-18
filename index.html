@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLAR // Возвращение</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a001a 0%, #1a0033 50%, #0a001a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Courier New', monospace;
+        }
+        .container {
+            text-align: center;
+            padding: 40px;
+            border: 2px solid #8A2BE2;
+            border-radius: 20px;
+            box-shadow: 0 0 60px rgba(138, 43, 226, 0.4);
+            background: rgba(10, 0, 20, 0.5);
+            backdrop-filter: blur(8px);
+            max-width: 600px;
+        }
+        h1 {
+            color: #8A2BE2;
+            font-size: 48px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 25px #8A2BE2;
+            letter-spacing: 5px;
+        }
+        .countdown {
+            color: #ffffff;
+            font-size: 38px;
+            margin: 30px 0;
+            font-weight: bold;
+            text-shadow: 0 0 15px #ffffff;
+        }
+        .status {
+            color: #bbbbbb;
+            font-size: 18px;
+            margin-top: 30px;
+            border-top: 1px solid #8A2BE2;
+            padding-top: 20px;
+        }
+        .bear {
+            font-size: 70px;
+            margin: 20px 0;
+            filter: drop-shadow(0 0 20px #8A2BE2);
+            cursor: default;
+            user-select: none;
+        }
+        .contact {
+            color: #8A2BE2;
+            font-size: 22px;
+            margin-top: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #8A2BE2;
+            display: none;
+        }
+        .success-status {
+            color: #00ff88;
+            text-shadow: 0 0 10px #00ff88;
+        }
+        .hidden-message {
+            color: #0a001a;
+            font-size: 10px;
+            margin-top: 30px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bear" id="bear">🐻‍❄️</div>
+        <h1>POLAR 5.0</h1>
+        <div class="countdown" id="timer">--:--:--:--</div>
+        <div class="status" id="status">
+            ⚡ СТАТУС: ОЖИДАНИЕ ЗАПУСКА ⚡<br>
+            <span style="color: #8A2BE2;">[ 25.04.2026 | 00:00 МСК ]</span>
+        </div>
+        <div class="contact" id="contact">
+            📡 НАПИШИ НАМ: @Perfek_Z
+        </div>
+        <div class="hidden-message">
+            <!-- 
+            =====================================================
+            ТЫ НАШЁЛ ТО, ЧТО НЕЛЬЗЯ НАЙТИ СЛУЧАЙНО.
+            =====================================================
+            РАСШИФРУЙ ЭТО:
+            UE9MQVIgLyDQodC10LrRgNC10YLQutCwIC8g0JrRgNCw0YHQsNCy0YfQuNC6IC8g0J3QsNC/0LjRiNC4INC90LDQvCDQsiBURzogQFBlcmZla19a
+            
+            И ОТПРАВЬ ТО, ЧТО ПОЛУЧИЛОСЬ.
+            =====================================================
+            -->
+        </div>
+    </div>
+
+    <script>
+        const targetDate = new Date('2026-04-25T00:00:00+03:00');
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('timer').innerHTML = '00:00:00:00';
+                document.getElementById('status').innerHTML = `
+                    ⚡ СТАТУС: <span class="success-status">ОБНОВЛЕНИЕ ПРОШЛО УСПЕШНО</span> ⚡<br>
+                    <span style="color: #8A2BE2;">[ ЛЕГЕНДА ВЕРНУЛАСЬ ]</span>
+                `;
+                document.getElementById('contact').style.display = 'block';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('timer').innerHTML = 
+                `${String(days).padStart(2, '0')}:${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+
+        let clickCount = 0;
+        document.getElementById('bear').addEventListener('click', function() {
+            clickCount++;
+            if (clickCount >= 5) {
+                alert('🔐 РАСШИФРУЙ: UE9MQVIgLyDQodC10LrRgNC10YLQutCwIC8g0JrRgNCw0YHQsNCy0YfQuNC6IC8g0J3QsNC/0LjRiNC4INC90LDQvCDQsiBURzogQFBlcmZla19a');
+                clickCount = 0;
+            }
+        });
+
+        console.log('%c🛡️ POLAR 5.0 // ТЫ ПРОВЕРЯЕШЬ КОД. ЭТО ПОХВАЛЬНО.', 'color: #8A2BE2; font-size: 14px; font-weight: bold;');
+        console.log('%c🔑 СЕКРЕТКА: UE9MQVIgLyDQodC10LrRgNC10YLQutCwIC8g0JrRgNCw0YHQsNCy0YfQuNC6IC8g0J3QsNC/0LjRiNC4INC90LDQvCDQsiBURzogQFBlcmZla19a', 'color: #ff0000; font-size: 12px;');
+    </script>
+</body>
+</html>
